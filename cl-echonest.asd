@@ -7,6 +7,7 @@
   :depends-on (:cl-web-utils)
   :serial t
   :components ((:file "packages")
+               (:file "config")
 	       (:file "echonest")
 	       (:file "artist")
 	       (:file "song")
