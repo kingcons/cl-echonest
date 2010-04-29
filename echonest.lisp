@@ -20,7 +20,7 @@
   `(define-json-request ,name
        (,@required-args &key (api-key *api-key*) (format "json")
                         ,@key-args)
-     ,(api-url name)))
+     ,(api-url name) :all-args-p t))
 
 ;; Former macro for XML calls. Not tested recently...
 ;; but you get the idea.
