@@ -1,0 +1,7 @@
+cl-echonest
+***********
+cl-echonest is a set of bindings to the echonest.com API.
+At this time it's minimal...in fact, not everything works.
+This should change in the very near future after which
+we may add extra tools or convenience functions to play
+around with the echonest's data and algorithms.

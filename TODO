@@ -1,0 +1,11 @@
+Bugs:
+Required args in functions don't work. This is a showstopper.
+-- Do we fix it in the define-json-request macro or in the defechocall macro?
+Figure out why format whines (style-warning about arg count mismatch) when
+recompiling certain functions (i.e. song/similar).
+
+Features:
+Support older versions of the API?
+
+Docs:
+DOCS DOCS DOCS DOCS DOCS!
