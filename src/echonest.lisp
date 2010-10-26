@@ -5,7 +5,7 @@
 ;; API Documentation:
 ;; http://beta.developer.echonest.com/overview.html
 
-(defvar *base-url* "http://beta.developer.echonest.com/api/")
+(defvar *base-url* "http://developer.echonest.com/api/")
 (defvar *id-base-url* "music://id.echonest.com/")
 (defvar *api-version* "4")
 

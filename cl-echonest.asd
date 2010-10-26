@@ -6,10 +6,9 @@
   :license "BSD"
   :depends-on (:cl-web-utils)
   :serial t
-  :components ((:file "packages")
-               (:file "config")
-	       (:file "echonest")
-	       (:file "artist")
-	       (:file "song")
-;	       (:file "testing")
-	       ))
+  :components ((:module src
+		:components ((:file "packages")
+			     (:file "config")
+			     (:file "echonest")
+			     (:file "artist")
+			     (:file "song")))))
