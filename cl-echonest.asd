@@ -5,10 +5,13 @@
   :author "Brit Butler <redline6561@gmail.com>"
   :license "BSD"
   :depends-on (:cl-web-utils)
-  :serial t
   :components ((:module src
 		:components ((:file "packages")
-			     (:file "config")
-			     (:file "echonest")
-			     (:file "artist")
-			     (:file "song")))))
+			     (:file "config"
+				    :depends-on ("packages"))
+			     (:file "echonest"
+				    :depends-on ("packages"))
+			     (:file "artist"
+				    :depends-on ("echonest"))
+			     (:file "song"
+				    :depends-on ("echonest"))))))

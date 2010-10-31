@@ -2,4 +2,4 @@
 
 (in-package :cl-echonest)
 
-(defvar *api-key* "")
+(defparameter *api-key* "")
