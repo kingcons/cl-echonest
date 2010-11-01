@@ -37,18 +37,26 @@
 (defechocall artist/reviews (id)
   (results 5) (start 0))
 
+;; The sounds-like and exact keywords can be one of: true, false
+;; The type keyword can be one of: name, description
+(defechocall artist/search (query)
+  (results 5) bucket limit exact sounds-like type)
+
 (defechocall artist/similar (id)
   (results 5) (start 0) bucket limit)
 
+(defechocall artist/songs (id)
+  name results start)
+
+(defechocall artist/terms (id)
+  name sort)
+
 (defechocall artist/top_hottt ()
   (results 5) (start 0) bucket limit)
+
+(defechocall artist/top_terms () results)
 
 (defechocall artist/urls (id))
 
 (defechocall artist/video (id)
   (results 5) (start 0))
-
-;; The sounds-like and exact keywords can be one of: true, false
-;; The type keyword can be one of: name, description
-(defechocall artist/search (query)
-  (results 5) bucket limit exact sounds-like type)

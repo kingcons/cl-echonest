@@ -14,8 +14,6 @@
 (defechocall song/profile (id)
   bucket limit)
 
-(defechocall song/similar (id)
-  results max-tempo min-tempo max-duration min-duration
-  max-loudness min-loudness max-familiarity min-familiarity
-  max-hotttnesss min-hotttnesss max-longitude min-longitude
-  max-latitude min-latitude mode key bucket limit)
+(defechocall song/identify (id)
+  query code artist title release
+  duration genre bucket)

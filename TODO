@@ -1,8 +1,14 @@
 Bugs:
-?
+Many requests aren't completing correctly. For example, see artist/search. Why is this?
+-- There are many things we might not be able to handle cleanly right now with cl-web-utils.
+---- Lists/arrays of arguments.
+---- The idea that one of several args must be supplied.
+---- POST requests involving file uploads.
+-- Consequently, is cl-web-utils the best way to do this?
+-- Maybe. Right now I need to know more about what's going on under those covers.
 
 Features:
-Support older versions of the API?
+
 
 Docs:
 DOCS DOCS DOCS DOCS DOCS!
