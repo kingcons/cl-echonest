@@ -19,4 +19,4 @@ From http://api.echonest.com/docs/v4/index.html#response-codes")
 
 (defun response-message (respcode)
   "Retrieve the message corresponding to the number RESPCODE."
-  (rest (nth (1- respcode) *response-codes*)))
+  (rest (nth (1+ respcode) *response-codes*)))

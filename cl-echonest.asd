@@ -4,13 +4,15 @@
   :version "0.1"
   :license "BSD"
   :author "Brit Butler <redline6561@gmail.com>"
-  :depends-on (#:drakma #:md5 #:st-json #:flexi-streams)
+  :depends-on (#:drakma #:st-json #:flexi-streams
+               #:alexandria #:split-sequence #:md5)
   :components ((:module src
                 :serial t
                 :components ((:file "package")
                              (:file "config")
                              (:file "errors")
-                             (:file "utils"))))
+                             (:file "utils")
+                             (:file "track"))))
   :in-order-to ((test-op (load-op cl-echonest-tests)))
   :perform (test-op :after (op c)
                     (funcall (intern "RUN!" :cl-echonest-tests))))
