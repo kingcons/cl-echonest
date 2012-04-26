@@ -14,11 +14,10 @@
 (defmethod md5sum ((file pathname))
   (format-md5 (md5:md5sum-file file)))
 
-(defun echonest-call (type name params &key (method :get) (format "json")
-                      form-data)
+(defun echonest-call (type name params &key (method :get) (format "json"))
   (let ((url (format nil "~a/~a/~a" *api-url* type name)))
     (multiple-value-bind (response status headers)
-        (drakma:http-request url :method method :form-data form-data
+        (drakma:http-request url :method method :content-length t
                              :parameters (append `(("format" . ,format)
                                                    ("api_key" . ,*api-key*))
                                                  params))

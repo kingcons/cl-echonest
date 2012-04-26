@@ -6,7 +6,7 @@
 (defclass track ()
   ;; Define some helpers, get-file, get-analysis
   ((filepath)
-   (id-or-md5)
+   (echonest-id)
    (analysis)))
 
 (defun get-analysis (track-json)
@@ -27,20 +27,31 @@
                                :method :post)))
     (getjso* "track" result)))
 
+(defmethod analyze ((id string))
+  (let ((result (echonest-call "track" "analyze"
+                               `(("id" . ,id)
+                                 ("bucket" . "audio_summary"))
+                               :method :post)))
+    (getjso* "track" result)))
+
 (defmethod profile ((file pathname))
   (let ((result (echonest-call "track" "profile"
                                `(("md5" . ,(md5sum file))
                                  ("bucket" . "audio_summary")))))
     (getjso* "track" result)))
 
-;; TODO: Why does this die mid-upload? Am I doing something wrong to get dropped?
+(defmethod profile ((id string))
+  (let ((result (echonest-call "track" "profile"
+                               `(("id" . ,id)
+                                 ("bucket" . "audio_summary")))))
+    (getjso* "track" result)))
+
 (defmethod upload ((file pathname) &optional (wait "false"))
   (let ((result (echonest-call "track" "upload"
-                               `(("wait" . ,wait)
-                                 ,@(when (string= "true" wait)
-                                     '(("bucket" . "audio_summary")))
-                                 ("url" . ,(pathname-name file))
+                               `(("track" . ,file)
                                  ("filetype" . ,(pathname-type file))
-                                 ("track" . ,file))
-                               :method :post :form-data t)))
+                                  ("wait" . ,wait)
+                                 ,@(when (string= wait "true")
+                                     `(("bucket" . "audio_summary"))))
+                               :method :post)))
     (getjso* "track" result)))
