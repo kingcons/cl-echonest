@@ -16,9 +16,10 @@
          ;; needed just to pass the signature correctly :-/ WTF
          (params (mapcar (lambda (pair)
                            (cons (car pair) (%url-decode (cdr pair))))
-                         (drakma::dissect-query (subseq url (1+ params-idx))))))
-    (st-json:read-json (drakma:http-request (subseq url 0 params-idx)
-                                            :parameters params))))
+                         (drakma::dissect-query (subseq url (1+ params-idx)))))
+         (result (drakma:http-request (subseq url 0 params-idx)
+                                      :parameters params)))
+    (st-json:read-json (flexi-streams:octets-to-string result))))
 
 (defmethod analyze ((file pathname))
   (let ((result (echonest-call "track" "analyze"
