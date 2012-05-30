@@ -5,7 +5,7 @@
   (format nil "~(~{~2,'0X~}~)" (coerce byte-vector 'list)))
 
 (defgeneric md5sum (object)
-  (:documentation "Creates an MD5 byte-array of STRING and prints it as lower-case hexadecimal."))
+  (:documentation "Creates an MD5 byte-array of OBJECT and prints it as lower-case hexadecimal."))
 
 (defmethod md5sum ((string string))
   (let ((string (string-to-octets string :external-format :utf-8)))
@@ -24,14 +24,6 @@
       (if (and (= status 200) (search "\"code\": 0" response))
           (st-json:getjso "response" (st-json:read-json response))
           (error 'echonest-error :message response)))))
-
-;; Copying this here until it or similar gets merged into st-json...
-(defmacro getjso* (keys jso)
-  (let ((last (position #\. keys :from-end t)))
-    (if last
-        `(st-json:getjso ,(subseq keys (1+ last))
-                 (getjso* ,(subseq keys 0 last) ,jso))
-        `(st-json:getjso ,keys ,jso))))
 
 ;; Lovingly stolen from hunchentoot
 (defun %url-decode (string)

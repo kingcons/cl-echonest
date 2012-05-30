@@ -10,7 +10,7 @@
    (analysis)))
 
 (defun get-analysis (track-json)
-  (let* ((url (getjso* "audio_summary.analysis_url" track-json))
+  (let* ((url (st-json:getjso* "audio_summary.analysis_url" track-json))
          (params-idx (position #\? url))
          ;; KLUDGE: drakma::dissect-query and hunchentoot::url-decode are
          ;; needed just to pass the signature correctly :-/ WTF
@@ -26,26 +26,26 @@
                                `(("md5" . ,(md5sum file))
                                  ("bucket" . "audio_summary"))
                                :method :post)))
-    (getjso* "track" result)))
+    (st-json:getjso* "track" result)))
 
 (defmethod analyze ((id string))
   (let ((result (echonest-call "track" "analyze"
                                `(("id" . ,id)
                                  ("bucket" . "audio_summary"))
                                :method :post)))
-    (getjso* "track" result)))
+    (st-json:getjso* "track" result)))
 
 (defmethod profile ((file pathname))
   (let ((result (echonest-call "track" "profile"
                                `(("md5" . ,(md5sum file))
                                  ("bucket" . "audio_summary")))))
-    (getjso* "track" result)))
+    (st-json:getjso* "track" result)))
 
 (defmethod profile ((id string))
   (let ((result (echonest-call "track" "profile"
                                `(("id" . ,id)
                                  ("bucket" . "audio_summary")))))
-    (getjso* "track" result)))
+    (st-json:getjso* "track" result)))
 
 (defmethod upload ((file pathname) &optional (wait "false"))
   (let ((result (echonest-call "track" "upload"
@@ -55,4 +55,4 @@
                                  ,@(when (string= wait "true")
                                      `(("bucket" . "audio_summary"))))
                                :method :post)))
-    (getjso* "track" result)))
+    (st-json:getjso* "track" result)))

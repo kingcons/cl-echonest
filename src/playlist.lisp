@@ -10,7 +10,7 @@
                                      `(("artist" . ,artists)))
                                  ,@(when song-ids
                                      `(("song_id" . ,song-ids)))))))
-    (getjso* "songs" result)))
+    (st-json:getjso* "songs" result)))
 
 ;; Bobby Tank - Circles: TRAHHWP136F598034A
 ;; Bondax - Just Us: TRVURQT136F05FEEF8
